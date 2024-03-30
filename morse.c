@@ -10,9 +10,13 @@ const char *char_to_morse(char c)
                                         "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----", "..---",
                                         "...--", "....-", ".....", "-....", "--...", "---..", "----."};
 
-    if ((c >= 'a' && c <= 'z') || (c>='A' && c<="Z"))
+    if ((c >= 'a' && c <= 'z'))
     {
         return morseCode[c - 'a'];
+    }
+    else if ((c >= 'A' && c <= 'Z'))
+    {
+        return morseCode[c - 'A'];
     }
     else if (c >= '0' && c <= '9')
     {
@@ -28,20 +32,19 @@ const char *char_to_morse(char c)
 // Use the delimiter / for any spaces between words
 void translate_to_morse(const char *text, char *morseOutput, int morseOutputSize)
 {
-    for(int i=0; i<text; i++)
+    for(int i=0; text[i] !='\0'; i++)
     {
         if(text[i]==' ')
         {
-            morseOutput+=char_to_morse('/');
+            strcat(morseOutput, "/ ");
         }
         else
         {
-            morseOutput+=char_to_morse(text[i]);
+            strcat(morseOutput, char_to_morse(text[i]));
+            strcat(morseOutput, " ");
         }
         
-        printf(text[i])
     }
-    return morseOutput
     // Loop through the text to convert each
     // charactor to morse code.
     // char_to_morse function is provided above but may not
@@ -55,10 +58,14 @@ void morse_blink_led(const char *morseCode)
 
     // Use LED_HIGH() to turn on led
     // Use LED_LOW() to turn off led
-    LED_HIGH();
-    LED_LOW();
+    //LED_HIGH();
+    //LED_LOW();
 
     // int duration = 1 or w/e value you need
     // Use DELAY(duration) to sleep the appropriate units
     // Rmemeber 1 unit = 1 second for this assignment
 }
+
+#define BUFSIZE 100
+
+
