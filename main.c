@@ -15,7 +15,7 @@ int main()
 
     // Passe `morseOutput` to the morse_blink_led function
     // Update the morse_blink_led to blink accordingly
-    //morse_blink_led(morseOutput);
+    morse_blink_led(morseOutput);
 
     return 0;
 }

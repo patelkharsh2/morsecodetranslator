@@ -2,6 +2,9 @@
 
 #include "blink.h"
 
+// WiringX API header
+#include <wiringx.h>
+
 // Fill in the three functions to
 // 1.) enable the output mode for onboard LED
 // 2.) set the led to high
@@ -11,12 +14,16 @@
 void initialize_led()
 {
     // Code to initialize gpio port for LED
+ 
+ 
 }
 
 // Write code to turn led on
 void turn_on_led()
 {
     // Code to turn on the LED
+    // Initialize WiringX library for the `duo`
+    
 }
 
 // Write code to turn led off
