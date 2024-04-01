@@ -36,8 +36,12 @@ void translate_to_morse(const char *text, char *morseOutput, int morseOutputSize
 
     // size of text array
     int len = strlen(text);
+
     // intialize to an empty array
     morseOutput[0] = '\0'; 
+
+    // Loop through the text to convert each
+    // character to morse code.
     for (int i = 0; i < len; i++)
     {
         // make sure its not binary and ASCII
@@ -70,19 +74,28 @@ void translate_to_morse(const char *text, char *morseOutput, int morseOutputSize
             strcat(morseOutput, "");
         }
     }
-    // Loop through the text to convert each
-    // charactor to morse code.
-    // char_to_morse function is provided above but may not
-    // handle all cases.
+   
+    
 }
 
 void morse_blink_led(const char *morseCode)
 {
     // Blink LED based on the timing needed
     // 1 Unit = 1 Second
+    // Use LED_HIGH() to turn on led
+    // Use LED_LOW() to turn off led
+
+    // Getting the length of the morse code
     int len = strlen(morseCode);
+
+    // Printing the morse code for debugging purposes
     printf("%s\n", morseCode);
+
+    // Initialize the LED/WiringX Libaray
     INIT_LED();
+
+    //Loop Through each part of the morse code and turn
+    // the LED on or off with respective delays
     for (int i = 0; i < len; i++)
     {
         // dots will be 1 unit
@@ -97,7 +110,7 @@ void morse_blink_led(const char *morseCode)
             if(morseCode[i+1] != ' ' && morseCode[i+1]!='\0')
             {
                 DELAY(1);
-                printf("space\n");
+                printf("space\n"); // space in the same letter
             }
         }
 
@@ -113,7 +126,7 @@ void morse_blink_led(const char *morseCode)
             if(morseCode[i+1] != ' ' && morseCode[i+1]!='\0')
             {
                 DELAY(1);
-                printf("space\n");
+                printf("space\n"); // space in the same letter
             }
         }
 
@@ -121,15 +134,17 @@ void morse_blink_led(const char *morseCode)
         else if (morseCode[i] == ' ') 
         {
             DELAY(3);
-            printf("lspace\n");
+            printf("lspace\n"); // Letter Space
         }
 
         // space between words will be 7 units (3 unit for space x2 + 1 unit)
         else if (morseCode[i] == '/') 
         {
             DELAY(1);
-            printf("wspace\n");
+            printf("wspace\n"); //Word space
         }
+
+        // Keep LED off if there is an unhandled case
         else
         {
             LED_LOW();
@@ -137,13 +152,4 @@ void morse_blink_led(const char *morseCode)
 
         
     }
-
-    // Use LED_HIGH() to turn on led
-    // Use LED_LOW() to turn off led
-    // LED_HIGH();
-    // LED_LOW();
-
-    // int duration = 1 or w/e value you need
-    // Use DELAY(duration) to sleep the appropriate units
-    // Rmemeber 1 unit = 1 second for this assignment
 }
