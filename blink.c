@@ -4,7 +4,7 @@
 
 // WiringX API header
 #include <wiringx.h>
-
+#define DUO_LED 25
 // Fill in the three functions to
 // 1.) enable the output mode for onboard LED
 // 2.) set the led to high
@@ -14,6 +14,28 @@
 void initialize_led()
 {
     // Code to initialize gpio port for LED
+    
+
+    // Initialize WiringX library for the `duo`
+    if(wiringXSetup("duo", NULL) == -1) {
+        // Release resources if there's an error
+        // during intialization.
+        wiringXGC();
+        //return -1;
+    }
+
+    // Verify the pin is available
+    if(wiringXValidGPIO(DUO_LED) != 0) {
+        printf("Invalid GPIO %d\n", DUO_LED);
+        wiringXGC();
+        //return -1;
+    }
+
+
+    // Initialize the GPIO pin as PINMODE_OUTPUT
+    pinMode(DUO_LED, PINMODE_OUTPUT);
+    printf("Duo LED Intialized %d\n", DUO_LED);
+
  
  
 }
@@ -23,6 +45,9 @@ void turn_on_led()
 {
     // Code to turn on the LED
     // Initialize WiringX library for the `duo`
+    printf("Duo LED GPIO (wiringX) %d: High\n", DUO_LED);
+    digitalWrite(DUO_LED, HIGH);
+    
     
 }
 
@@ -30,6 +55,8 @@ void turn_on_led()
 void turn_off_led()
 {
     // Code to turn off the LED
+    printf("Duo LED GPIO (wiringX) %d: Low\n", DUO_LED);
+    digitalWrite(DUO_LED, LOW);
 }
 
 // This code that helps with testing

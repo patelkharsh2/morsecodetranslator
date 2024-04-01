@@ -6,7 +6,7 @@
 
 int main()
 {
-    char text[] = "hello";
+    char text[] = "SOS";
     char morseOutput[BUFSIZE] = "";
 
     // Fill in the code for `translate_to_morse`

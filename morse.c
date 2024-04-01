@@ -82,6 +82,7 @@ void morse_blink_led(const char *morseCode)
     // 1 Unit = 1 Second
     int len = strlen(morseCode);
     printf("%s\n", morseCode);
+    INIT_LED();
     for (int i = 0; i < len; i++)
     {
         // dots will be 1 unit
