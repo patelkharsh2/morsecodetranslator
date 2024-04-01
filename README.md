@@ -59,3 +59,6 @@ morseOutput[0] = '\0';
 ```
 
 - Another challenge that we faced was getting an accurate number of delays. This was fixed by adding cases to differentiate delays in morse of the same letter and different letters. Also added cases for words as well
+
+## Blink Method
+- Figuring out which blink method to utilize for this project was also a challenge that we encountered. We ended up going with WiringX and used their API to blink the LEDs
